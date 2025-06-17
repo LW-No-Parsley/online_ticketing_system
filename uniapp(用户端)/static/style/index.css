@@ -1,0 +1,143 @@
+.container {
+  background: #f8f5ef;
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+.header {
+  position: relative;
+  width: 100vw;
+  height: 220px;
+}
+.header-swiper {
+  width: 100vw;
+  height: 220px;
+}
+.header-img {
+  width: 100vw;
+  height: 220px;
+  object-fit: cover;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.header-title-area {
+  position: absolute;
+  top: 30px;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header-title {
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+.header-sub {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.header-btn {
+  background: rgba(255,255,255,0.3);
+  color: #fff;
+  border-radius: 16px;
+  padding: 2px 18px;
+  font-size: 16px;
+}
+.notice-bar {
+  background: #e9e5e0;
+  margin: 16px 12px 0 12px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding: 8px 12px;
+  font-size: 15px;
+}
+.notice-icon {
+  margin-right: 6px;
+}
+.notice-text {
+  flex: 1;
+}
+.notice-arrow {
+  color: #b8b8b8;
+  font-size: 18px;
+}
+.info-area {
+  margin: 18px 12px 0 12px;
+}
+.museum-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #3d2c1e;
+}
+.museum-desc {
+  font-size: 13px;
+  color: #7a6a58;
+  margin: 8px 0 16px 0;
+  display: block;
+}
+.card-row {
+  display: flex;
+  gap: 16px;
+}
+.card {
+  flex: 1;
+  border-radius: 16px;
+  padding: 18px 0 12px 18px;
+  min-height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.card-red {
+  background: #a13a2f;
+  color: #fff;
+}
+.card-yellow {
+  background: #e3b16a;
+  color: #fff;
+}
+.card-title {
+  font-size: 17px;
+  font-weight: bold;
+}
+.card-desc {
+  font-size: 13px;
+  margin-top: 8px;
+}
+.tabbar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 60px;
+  background: #f8f5ef;
+  display: flex;
+  border-top: 1px solid #e5e1d8;
+  z-index: 99;
+}
+.tabbar-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #b8a07a;
+  font-size: 13px;
+}
+.tabbar-item.active {
+  color: #a13a2f;
+  font-weight: bold;
+}
+.tabbar-icon {
+  width: 26px;
+  height: 26px;
+  margin-bottom: 2px;
+  border-radius: 50%;
+  object-fit: cover;
+}

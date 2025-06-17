@@ -1,0 +1,66 @@
+<template>
+  <view class="order-container">
+    <!-- 订单详情 -->
+    <view class="order-list">
+      <view class="order-card">
+        <view class="order-header">
+          <text class="order-id">订单号: {{ order.orderId }}</text>
+          <text class="order-status status-{{ order.statusCode }}">{{ order.status }}</text>
+        </view>
+        <view class="order-body">
+          <view class="order-info">
+            <text>{{ order.date }} {{ order.time }}</text>
+            <text class="order-amount">总金额: <span>¥{{ order.totalAmount }}元</span></text>
+          </view>
+          <view class="order-tickets">
+            <view v-for="ticket in order.tickets" :key="ticket.name" class="ticket-item">
+              <text class="ticket-name">{{ ticket.name }}</text>
+              <text class="ticket-count">{{ ticket.count }}张</text>
+              <text class="ticket-price">{{ ticket.price }}元</text>
+            </view>
+          </view>
+        </view>
+        <view class="order-footer">
+          <button v-if="order.status === '待支付'" class="btn-action" @click="handlePayment">付款</button>
+          <button v-else-if="order.status === '未使用'" class="btn-action">生成二维码</button>
+          <button v-else-if="order.status === '退款'" class="btn-action">钱款去向</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      order: {}, // 存储订单详情
+    };
+  },
+  methods: {
+    handlePayment() {
+      uni.navigateTo({
+        url: `/pages/payment/index?orderId=${this.order.orderId}`
+      });
+    }
+  },
+  created() {
+    const orderData = uni.getStorageSync('selectedOrder');
+    if (!orderData) {
+      uni.showToast({
+        title: '订单数据加载失败',
+        icon: 'none',
+      });
+      setTimeout(() => {
+        uni.navigateBack();
+      }, 2000);
+      return;
+    }
+    this.order = orderData;
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+@import url(/static/style/order.css);
+</style>

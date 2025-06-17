@@ -1,0 +1,15 @@
+<template>
+  <view>
+    <OrderPage />
+  </view>
+</template>
+
+<script>
+import OrderPage from '../order.uvue';
+export default {
+  components: { OrderPage }
+};
+</script>
+
+<script src="./index.js"></script>
+<link rel="stylesheet" href="./index.css">

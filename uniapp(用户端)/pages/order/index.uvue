@@ -1,0 +1,65 @@
+<template>
+  <view class="order-container">
+    <!-- 订单分类tab -->
+    <view class="order-tabs">
+      <view 
+        class="order-tab" 
+        :class="{ active: activeTab === '全部' }" 
+        @click="filterOrders('全部')"
+      >全部</view>
+      <view 
+        class="order-tab" 
+        :class="{ active: activeTab === '待支付' }" 
+        @click="filterOrders('待支付')"
+      >待支付</view>
+      <view 
+        class="order-tab" 
+        :class="{ active: activeTab === '未使用' }" 
+        @click="filterOrders('未使用')"
+      >未使用</view>
+      <view 
+        class="order-tab" 
+        :class="{ active: activeTab === '退款/售后' }" 
+        @click="filterOrders('退款/售后')"
+      >退款/售后</view>
+    </view>
+
+    <!-- 订单列表 -->
+    <view v-if="filteredOrders.length" class="order-list">
+      <view v-for="order in filteredOrders" :key="order.orderId" class="order-card">
+        <view class="order-header">
+          <text class="order-id">订单号: {{ order.orderId }}</text>
+          <text class="order-status status-{{ order.statusCode }}">{{ order.status }}</text>
+        </view>
+        <view class="order-body">
+          <view class="order-info">
+            <text>{{ order.date }} {{ order.time }}</text>
+            <text class="order-amount">总金额: <span>¥{{ order.totalAmount }}元</span></text>
+          </view>
+          <view class="order-tickets">
+            <view v-for="ticket in order.tickets" :key="ticket.name" class="ticket-item">
+              <text class="ticket-name">{{ ticket.name }}</text>
+              <text class="ticket-count">{{ ticket.count }}张</text>
+              <text class="ticket-price">{{ ticket.price }}元</text>
+            </view>
+          </view>
+        </view>
+        <view class="order-footer">
+          <button class="btn-action" v-if="order.statusCode === 'pending'">去支付</button>
+          <button class="btn-action" @click="viewDetails(order)">查看详情</button>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空内容 -->
+    <view v-else class="order-empty">
+      <text class="order-empty-text">未找到相关内容</text>
+    </view>
+  </view>
+</template>
+
+<script src="/static/script/order.js"></script>
+
+<style lang="scss" scoped>
+@import url(/static/style/order.css);
+</style>

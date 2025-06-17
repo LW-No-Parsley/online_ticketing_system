@@ -1,0 +1,96 @@
+<template>
+  <view class="payment-container">
+    <view class="payment-header">
+      <text class="payment-title">支付页面</text>
+    </view>
+
+    <view class="payment-content">
+      <text class="payment-info">正在处理您的支付请求...</text>
+    </view>
+
+    <view class="payment-footer">
+      <button class="back-btn" @click="goBack">返回首页</button>
+    </view>
+  </view>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      paymentStatus: null, // 支付状态
+    };
+  },
+  methods: {
+    async processPayment() {
+      try {
+        const response = await fetch('http://localhost:8080/api/payment', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(uni.getStorageSync('ticketOptions')),
+        });
+
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const data = await response.json();
+        this.paymentStatus = data.status;
+        uni.showToast({
+          title: data.message,
+          icon: data.status === 'success' ? 'success' : 'none',
+        });
+      } catch (error) {
+        console.error('支付失败:', error);
+        uni.showToast({
+          title: '支付失败，请重试',
+          icon: 'none',
+        });
+      }
+    },
+    goBack() {
+      uni.switchTab({
+        url: '/pages/index/index',
+      });
+    },
+  },
+  onLoad() {
+    this.processPayment();
+  },
+};
+</script>
+
+<style>
+.payment-container {
+  padding: 16px;
+  background: #f8f5ef;
+  min-height: 100vh;
+}
+.payment-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+.payment-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #3d2c1e;
+}
+.payment-content {
+  text-align: center;
+  margin-bottom: 16px;
+}
+.payment-info {
+  font-size: 16px;
+  color: #a3874a;
+}
+.payment-footer {
+  text-align: center;
+}
+.back-btn {
+  background: #c5ac72;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 10px 32px;
+  border: none;
+}
+</style>

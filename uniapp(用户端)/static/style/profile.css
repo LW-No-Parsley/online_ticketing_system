@@ -1,0 +1,143 @@
+.profile-container {
+  background: #f8f5ef;
+  height: 97vh;
+}
+.profile-header {
+  position: relative;
+  width: 100vw;
+  height: 120px;
+}
+.profile-bg {
+  width: 100vw;
+  height: 120px;
+  object-fit: cover;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+}
+.profile-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 60px;
+  text-align: center;
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 8px;
+}
+.profile-card {
+  background: #fff;
+  margin: -40px 16px 0 16px;
+  border-radius: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 18px 0 0 0;
+}
+.profile-avatar-area {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding: 0 0 18px 24px;
+}
+.profile-avatar {
+  width: 54px;
+  height: 54px;
+  background: #eae3d2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+}
+.profile-avatar-img {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+}
+.profile-login {
+  font-size: 20px;
+  color: #3d2c1e;
+  font-weight: bold;
+}
+.profile-list {
+  border-top: 1px solid #f0e8d8;
+}
+.profile-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  padding: 18px 18px 18px 24px;
+  font-size: 16px;
+  color: #3d2c1e;
+  border-bottom: 1px solid #f0e8d8;
+}
+.profile-list-item:last-child {
+  border-bottom: none;
+}
+.profile-list-action {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.profile-list-action-text {
+  color: #b8a07a;
+  margin-right: 6px;
+}
+.profile-list-arrow {
+  color: #b8a07a;
+  font-size: 18px;
+}
+.profile-btn-area {
+  padding: 24px 18px 24px 18px;
+}
+.profile-btn {
+  width: 100%;
+  border: 1.5px solid #b8a07a;
+  color: #b8a07a;
+  background: #fff;
+  border-radius: 8px;
+  font-size: 18px;
+}
+.exit-btn {
+  margin: 40vh auto 0 auto;
+  width: 100px;
+  font-size: 15px;
+  color: #bca586;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.tabbar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 60px;
+  background: #f8f5ef;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-top: 1px solid #e5e1d8;
+  z-index: 99;
+}
+.tabbar-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #b8a07a;
+  font-size: 13px;
+  min-width: 0;
+}
+.tabbar-item.active {
+  color: #a13a2f;
+  font-weight: bold;
+}
+.tabbar-icon {
+  width: 26px;
+  height: 26px;
+  margin-bottom: 2px;
+  border-radius: 50%;
+  object-fit: cover;
+}

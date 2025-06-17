@@ -1,0 +1,76 @@
+<template>
+  <view class="tabbar">
+    <view class="tabbar-item" :class="{active: current==='home'}" @click="goHome">
+      <image class="tabbar-icon" src="/static/logo.png"></image>
+      <text>首页</text>
+    </view>
+    <view class="tabbar-item" :class="{active: current==='order'}" @click="goOrder">
+      <image class="tabbar-icon" src="/static/4fa1274f11d0fea8434c8736fb5beea.jpg"></image>
+      <text>订单</text>
+    </view>
+    <view class="tabbar-item" :class="{active: current==='profile'}" @click="goProfile">
+      <image class="tabbar-icon" src="/static/0416e24704d4f7209e85f1417af9654.jpg"></image>
+      <text>我的</text>
+    </view>
+  </view>
+</template>
+
+<script>
+export default {
+  name: 'CustomTabbar',
+  props: {
+    current: {
+      type: String,
+      default: 'home'
+    }
+  },
+  methods: {
+    goHome() {
+      uni.switchTab({ url: '/pages/index/index' });
+    },
+    goOrder() {
+      uni.switchTab({ url: '/pages/order/index' });
+    },
+    goProfile() {
+      uni.switchTab({ url: '/pages/profile/index' });
+    }
+  }
+}
+</script>
+
+<style scoped>
+.tabbar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 60px;
+  background: #f8f5ef;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-top: 1px solid #e5e1d8;
+  z-index: 99;
+}
+.tabbar-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #b8a07a;
+  font-size: 13px;
+  min-width: 0;
+}
+.tabbar-item.active {
+  color: #a13a2f;
+  font-weight: bold;
+}
+.tabbar-icon {
+  width: 26px;
+  height: 26px;
+  margin-bottom: 2px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+</style>

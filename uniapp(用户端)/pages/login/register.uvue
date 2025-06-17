@@ -1,0 +1,177 @@
+<template>
+  <view class="register-container">
+    <view class="register-form">
+      <view class="form-item">
+        <text class="label">手机号</text>
+        <input 
+          v-model="form.username" 
+          type="number" 
+          placeholder="请输入11位手机号"
+          maxlength="11"
+        />
+      </view>
+      <view class="form-item">
+        <text class="label">邮箱</text>
+        <input 
+          v-model="form.email" 
+          type="text" 
+          placeholder="请输入邮箱"
+        />
+      </view>
+      <view class="form-item">
+        <text class="label">密码</text>
+        <input 
+          v-model="form.password" 
+          type="password" 
+          placeholder="请输入6-20位密码"
+        />
+      </view>
+      <button class="register-btn" @click="handleRegister">注册</button>
+    </view>
+  </view>
+</template>
+
+<script>
+import CryptoJS from 'crypto-js'
+
+export default {
+  data() {
+    return {
+      form: {
+        username: '',
+        email: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    async handleRegister() {
+      // 密码加密
+      const encryptedPassword = this.form.password ? CryptoJS.SHA256(this.form.password).toString() : ''
+      
+      // 直接提交到后端验证
+      // if (!this.form.username || !this.form.email || !this.form.password) {
+      //   // 空值检查仍然保留，避免无效请求
+      //   uni.showToast({
+      //     title: '请填写完整信息',
+      //     icon: 'none'
+      //   })
+      //   return
+      // }
+
+      try {
+        const response = await uni.request({
+          url: 'http://localhost:8080/api/auth/register',
+          method: 'POST',
+          data: {
+            username: this.form.username,
+            email: this.form.email,
+            password: encryptedPassword
+          },
+          header: {
+            'Content-Type': 'application/json'
+          }
+        })
+
+        const [error, res] = response
+        
+        if (error) {
+          throw new Error('网络错误，请稍后重试')
+        }
+        
+        if (!res || !res.data) {
+          throw new Error(response.data.message)
+        }
+        
+        if (!res.data.success) {
+          // 安全访问message属性
+          const errorMsg = res.data.message || '注册失败'
+          console.log('显示错误提示:', errorMsg) // 调试日志
+          try {
+            uni.showToast({
+              title: errorMsg,
+              icon: 'none',
+              duration: 2000
+            })
+          } catch (e) {
+            console.error('showToast失败:', e)
+            uni.showModal({
+              title: '提示',
+              content: errorMsg,
+              showCancel: false
+            })
+          }
+          return
+        }
+
+        uni.showToast({
+          title: '注册成功',
+          icon: 'success',
+          duration: 1500
+        })
+        
+        setTimeout(() => {
+          uni.navigateBack()
+        }, 1500)
+      } catch (error) {
+        uni.showToast({
+          title: error.message,
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+.register-container {
+  background: #f8f5ef;
+  min-height: 100vh;
+  padding: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  .register-form {
+    width: 80%;
+    max-width: 400px;
+    background: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    
+    .form-item {
+      margin-bottom: 16px;
+      
+      .label {
+        font-size: 16px;
+        color: #3d2c1e;
+        margin-bottom: 8px;
+        display: block;
+      }
+      
+      input {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        border: 1px solid #b8a07a;
+        border-radius: 8px;
+      }
+    }
+    
+    .register-btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 18px;
+      color: #fff;
+      background: #a13a2f;
+      border: none;
+      border-radius: 8px;
+      margin-top: 16px;
+    }
+  }
+}
+</style>

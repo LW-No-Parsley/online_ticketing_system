@@ -1,0 +1,194 @@
+.order-container {
+  background: #f8f5ef;
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+.order-header {
+  padding-top: 36px;
+  padding-bottom: 10px;
+  text-align: center;
+  position: relative;
+}
+.order-title {
+  font-size: 22px;
+  color: #3d2c1e;
+  font-weight: bold;
+}
+.order-header-btns {
+  position: absolute;
+  right: 16px;
+  top: 36px;
+  display: flex;
+  gap: 8px;
+}
+.order-header-btn {
+  width: 36px;
+  height: 28px;
+  background: #fff;
+  border-radius: 16px;
+  display: inline-block;
+}
+.order-tabs {
+    display: flex;
+    margin: 18px 0 0 0;
+    background: transparent;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.order-tab {
+  font-size: 17px;
+  color: #7a6a58;
+  padding-bottom: 6px;
+  position: relative;
+}
+.order-tab.active {
+  color: #3d2c1e;
+  font-weight: bold;
+}
+.order-tab.active::after {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: #3d2c1e;
+  border-radius: 1px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -2px;
+}
+.order-empty {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.order-empty-img {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 18px;
+  opacity: 0.7;
+}
+.order-empty-text {
+  color: #b8a07a;
+  font-size: 16px;
+}
+.tabbar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 60px;
+  background: #f8f5ef;
+  display: flex;
+  border-top: 1px solid #e5e1d8;
+  z-index: 99;
+}
+.tabbar-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #b8a07a;
+  font-size: 13px;
+}
+.tabbar-item.active {
+  color: #a13a2f;
+  font-weight: bold;
+}
+.tabbar-icon {
+  width: 26px;
+  height: 26px;
+  margin-bottom: 2px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.order-container {
+  background: #f8f5ef;
+  min-height: 100vh;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* 卡片样式 */
+.order-card {
+  background: #ffffff;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  padding: 14px 16px;
+  border-bottom: 1px solid #ece8e0;
+  background: #faf7f1;
+}
+.order-id {
+  font-size: 14px;
+  color: #3d2c1e;
+}
+.order-status {
+  font-size: 14px;
+  font-weight: 500;
+}
+.status-pending { color: #e67e22; }
+.status-used { color: #27ae60; }
+.status-refund { color: #c0392b; }
+
+.order-body {
+  padding: 12px 16px;
+}
+.order-info {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  font-size: 13px;
+  color: #7a6a58;
+  margin-bottom: 10px;
+}
+.order-amount span {
+  font-weight: bold;
+  color: #3d2c1e;
+}
+
+.order-tickets {
+  display: flex;
+  border-top: 1px dashed #ebe5d9;
+  padding-top: 10px;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.ticket-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  flex-direction: row;
+}
+.ticket-name { flex: 2; font-size: 14px; color: #4a3a2a; }
+.ticket-count, .ticket-price { flex: 1; text-align: right; font-size: 14px; color: #6f624f; }
+
+.order-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px 16px;
+  background: #faf7f1;
+  border-top: 1px solid #ece8e0;
+}
+.btn-action {
+  padding: 6px 14px;
+  font-size: 14px;
+  border: none;
+  border-radius: 20px;
+  background: #3d2c1e;
+  color: #fff;
+}
+.btn-action + .btn-action {
+  margin-left: 8px;
+}

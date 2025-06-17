@@ -1,0 +1,25 @@
+<template>
+  <view class="login-container">
+    <view class="login-header">
+      <text class="login-title">登录</text>
+    </view>
+    <view class="login-form">
+      <view class="form-item">
+        <text class="form-label">用户名</text>
+        <input class="form-input" type="text" placeholder="请输入用户名" v-model="username" />
+      </view>
+      <view class="form-item">
+        <text class="form-label">密码</text>
+        <input class="form-input" type="password" placeholder="请输入密码" v-model="password" />
+      </view>
+      <button class="login-btn" @click="handleLogin">登录</button>
+      <button class="register-btn" @click="handleRegister">注册</button>
+    </view>
+  </view>
+</template>
+
+<script src="/static/script/login.js">
+</script>
+<style >
+@import url(/static/style/login.css);
+</style>

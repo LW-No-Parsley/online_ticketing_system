@@ -1,0 +1,37 @@
+.ticket-type {
+  margin-top: 16px;
+}
+.ticket-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #f0e8d8;
+}
+.ticket-name {
+  font-size: 14px;
+  color: #3d2c1e;
+}
+.ticket-price {
+  font-size: 14px;
+  color: #a3874a;
+}
+.ticket-counter {
+  display: flex;
+  align-items: center;
+}
+.counter-btn {
+  background: #e5e1d8;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  text-align: center;
+}
+.counter-value {
+  margin: 0 4px;
+  font-size: 14px;
+  color: #3d2c1e;
+}

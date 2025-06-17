@@ -1,0 +1,15 @@
+<template>
+  <view>
+    <ProfilePage />
+  </view>
+</template>
+
+<script>
+import ProfilePage from '../profile.uvue';
+export default {
+  components: { ProfilePage }
+};
+</script>
+
+<script src="./index.js"></script>
+<link rel="stylesheet" href="./index.css">

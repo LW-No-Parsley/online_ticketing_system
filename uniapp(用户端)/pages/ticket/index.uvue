@@ -1,0 +1,53 @@
+<template>
+  <view class="ticket-container">
+    <view class="ticket-card">
+      <text class="museum-title">故宫博物院</text>
+      <view class="ticket-divider"></view>
+      <view class="ticket-section">
+        <text class="section-title">参观日期</text>
+        <view class="date-row">
+          <view class="date-item" v-for="(option, index) in dateOptions" :key="index" :class="{disabled: !option.available, selected: selectedDate === option.date}" @click="selectDate(index)">
+            <text>{{ option.label }}</text>
+            <text class="date-desc">{{ option.desc }}</text>
+            <view v-if="selectedDate === option.date" class="date-corner"></view>
+          </view>
+        </view>
+      </view>
+      <view class="ticket-section">
+        <text class="section-title">参观时间</text>
+        <view class="time-row">
+          <view class="time-item" v-for="(option, index) in timeOptions" :key="index" :class="{selected: selectedTime === index}" @click="selectTime(index)">
+            <text>{{ option.label }}</text>
+            <text class="time-badge">{{ option.status === 1 ? `可约 (${option.remainingTickets} 张)` : '已约满' }}</text>
+            <view v-if="selectedTime === index" class="date-corner"></view>
+          </view>
+        </view>
+      </view>
+      </view>
+      <view class="ticket-card" v-if="showTicketOptions()">
+        <text class="section-title">选择票种</text>
+        <view class="ticket-type">
+          <view class="ticket-item" v-for="(ticket, index) in ticketOptions" :key="index">
+          <view class="ticket-item1">
+            <text class="ticket-name">{{ ticket.name }}</text>
+            <text class="ticket-price">¥ {{ ticket.price }}</text>
+          </view>            
+          <view class="ticket-counter">
+              <button class="counter-btn" @click="decreaseTicket(index)">-</button>
+              <text class="counter-value">{{ ticket.count }}</text>
+              <button class="counter-btn" @click="increaseTicket(index)">+</button>
+            </view>
+            </view>
+        </view>
+    </view>
+    <view class="ticket-footer">
+      <text class="footer-total">总计 <text class="footer-num">{{ totalTickets }}</text> 张</text>
+      <button class="footer-btn" :disabled="totalTickets === 0" @click="goToOrderPage">立即预订</button>
+    </view>
+  </view>
+</template>
+
+<script src="/static/script/ticket.js"></script>
+<style>
+@import url(/static/style/ticket.css)
+</style>

@@ -1,0 +1,85 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "购票约展"
+			}
+		},
+		{
+			"path": "pages/order/index",
+			"style": {
+				"navigationBarTitleText": "订单"
+			}
+		},
+		{
+			"path": "pages/profile/index",
+			"style": {
+				"navigationBarTitleText": "个人"
+			}
+		},
+		{
+			"path": "pages/ticket/index",
+			"style": {
+				"navigationBarTitleText": "选择日期和数量"
+			}
+		},
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/login/register",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		},
+		{
+			"path": "pages/order/details",
+			"style": {
+				"navigationBarTitleText": "订单详情"
+			}
+		},
+				{
+			"path": "pages/payment/index",
+			"style": {
+				"navigationBarTitleText": "支付"
+			}
+		}
+	],
+	"tabBar": {
+		"color": "#b8a07a",
+		"selectedColor": "#a13a2f",
+		"backgroundColor": "#f8f5ef",
+		"borderStyle": "black",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/logo.png",
+				"selectedIconPath": "static/logo.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/order/index",
+				"iconPath": "static/4fa1274f11d0fea8434c8736fb5beea.jpg",
+				"selectedIconPath": "static/4fa1274f11d0fea8434c8736fb5beea.jpg",
+				"text": "订单"
+			},
+			{
+				"pagePath": "pages/profile/index",
+				"iconPath": "static/0416e24704d4f7209e85f1417af9654.jpg",
+				"selectedIconPath": "static/0416e24704d4f7209e85f1417af9654.jpg",
+				"text": "个人"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app x",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}

@@ -1,0 +1,85 @@
+<template>
+  <view class="container">
+    <!-- 顶部大图和标题（轮播图） -->
+    <view class="header">
+      <swiper class="header-swiper" circular autoplay interval="4000" duration="500">
+        <swiper-item v-for="(img, idx) in headerImgs" :key="idx">
+          <image class="header-img" :src="img" mode="aspectFill"></image>
+        </swiper-item>
+      </swiper>
+    </view>
+
+    <!-- 须知提示栏 -->
+    <view class="notice-bar">
+      <text class="notice-icon">🔔</text>
+      <text class="notice-text">故宫博物院参观须知</text>
+      <text class="notice-arrow">&gt;</text>
+    </view>
+
+    <!-- 信息区块 -->
+    <view class="info-area">
+      <text class="museum-title">故宫博物院</text>
+      <text class="museum-desc">旺季：开放入馆时间08:30 | 停止入馆时间16:00 | 闭馆时间17:00 珍宝馆、钟表馆停止入馆时间16:10</text>
+      <view class="card-row">
+        <view class="card card-red" @click="goTicket">
+          <text class="card-title">购票约展 &gt;</text>
+          <text class="card-desc">大门票、两馆、展览预约</text>
+        </view>
+        <view class="card card-yellow" @click="goYearTicket">
+          <text class="card-title">年票参观登记 &gt;</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部导航栏 -->
+<!--    <CustomTabbar current="home" /> -->
+  </view>
+</template>
+
+<script>
+import CustomTabbar from '@/components/CustomTabbar.uvue';
+import http from '@/static/script/http.js';
+
+export default {
+  components: { CustomTabbar },
+  data() {
+    return {
+      headerImgs: []
+    };
+  },
+  created() {
+    this.fetchCarouselData();
+  },
+  methods: {
+    async fetchCarouselData() {
+      try {
+        const res = await http.request({
+          url: 'http://localhost:8080/api/carousel',
+          method: 'GET'
+        });
+        this.headerImgs = res.map(item => `http://localhost:8080${item.imageUrl}`);
+      } catch (error) {
+        console.error('获取轮播图数据失败:', error);
+        // 失败时使用默认图片
+        this.headerImgs = [
+          '/static/15504e23b35ed72b618c28b728938e9.jpg',
+          '/static/4fa1274f11d0fea8434c8736fb5beea.jpg',
+          '/static/0416e24704d4f7209e85f1417af9654.jpg'
+        ];
+      }
+    },
+    goTicket() {
+      // 跳转到购票页面（请根据实际页面路径调整）
+      uni.navigateTo({ url: '/pages/ticket/index' });
+    },
+    goYearTicket() {
+      // 跳转到年票参观登记页面（请根据实际页面路径调整）
+      uni.navigateTo({ url: '/pages/year-ticket/index' });
+    }
+  }
+};
+</script>
+
+<style >
+@import url(/static/style/index.css);
+</style>

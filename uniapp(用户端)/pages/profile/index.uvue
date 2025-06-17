@@ -1,0 +1,89 @@
+<template>
+  <view class="profile-container">
+    <!-- 顶部背景与标题 -->
+    <view class="profile-header">
+      <image class="profile-bg" src="/static/15504e23b35ed72b618c28b728938e9.jpg" mode="aspectFill"></image>
+    </view>
+    <!-- 个人信息卡片 -->
+    <view class="profile-card">
+      <view class="profile-avatar-area">
+        <view class="profile-avatar">
+          <image class="profile-avatar-img" src="/static/logo.png"></image>
+        </view>
+        <text class="profile-login" @click="goLogin">{{ username ?'欢迎回来' : '请点击登录' }}</text>
+      </view>
+      <view class="profile-list">
+        <view class="profile-list-item">
+          <text>手机号码:{{username}}</text>
+
+          <view class="profile-list-action">
+            <text class="profile-list-action-text">修改</text>
+            <text class="profile-list-arrow">&gt;</text>
+          </view>
+        </view>
+        <view class="profile-list-item">
+          <text>年票余额</text>
+          <view class="profile-list-action">
+            <text class="profile-list-action-text">去查询</text>
+            <text class="profile-list-arrow">&gt;</text>
+          </view>
+        </view>
+      </view>
+      <view class="profile-btn-area">
+        <button class="profile-btn">新增常用观众</button>
+      </view>
+    </view>
+    <!-- 底部导航栏 -->
+    <button class="exit-btn" @click="logout" v-if="username">退出登录</button>
+<!--    <CustomTabbar current="profile" /> -->
+  </view>
+</template>
+
+<script>
+import CustomTabbar from '../../components/CustomTabbar.uvue';
+export default {
+  components: { CustomTabbar },
+  data() {
+    return {
+      username: '' // 添加 username 属性以解决警告
+    };
+  },
+  created() {
+    const userInfo = uni.getStorageSync('userInfo');
+    if (userInfo && userInfo.username) {
+      this.username = userInfo.username;
+    }
+  },
+  methods: {
+    goLogin() {
+      uni.navigateTo({
+        url: '/pages/login/index',
+        events: {
+          refreshProfile: () => {
+            // 刷新用户信息
+            const userInfo = uni.getStorageSync('userInfo');
+            this.username = userInfo.username;
+          }
+        }
+      });
+    },
+    logout() {
+      // 清除本地存储并刷新页面
+      uni.removeStorageSync('userInfo');
+      this.username = '';
+      uni.showToast({ title: '已退出登录', icon: 'none' });
+      // 验证清除是否成功
+      console.log('退出登录后 userInfo:', uni.getStorageSync('userInfo'));
+      // 确保 username 被正确清空
+      this.username = '';
+      console.log('退出登录后清空的 username:', this.username);
+      // 强制刷新页面以更新模板
+      this.$forceUpdate();
+    }
+  }
+};
+</script>
+
+<style>
+@import url(/static/style/profile.css);
+</style>
